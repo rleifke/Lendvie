@@ -10,10 +10,11 @@ contract Lendvie {
                                          //one active loan with the same user
     mapping (address => Loan[]) debts;
   }
-
+//added staker agent to loan
   struct Loan {
     address lender;
     address borrower;
+    address staker;
     bool isPaid;
     uint amountBorrowed;
     uint amountDue;
@@ -51,4 +52,59 @@ contract Lendvie {
    *TODO make sure contract isn't vulnerable to uint under/overflow, race conditions, etc
    *TODO add more necessary contract class variables and observer/mutator methods
    */
+   
+   /*
+      /* deposit into borrower accounts and will return the balance of the user 
+    after the deposit is made */
+   function deposit(address receiver, uint amount) returns(uint256) {
+        if (balances[msg.sender] < amount) return;
+        balances[msg.sender] -= amount;
+        balances[receiver] += amount;
+        checkLoanPayoff();
+        return balances[receiver];
+    }
+
+    /* 'constant' prevents function from editing state variables; */
+    function getBalance(address receiver) constant returns(uint256){
+        return balances[receiver];
+    }
+    
+    //Need to a function that checks if loan payment is fufilled
+    
+    
+    /* Add loan details into the contract */
+    function submitLoan(
+            bytes32 _borrower,
+            bytes32 _staker,
+            uint32 _term,
+            uint32 _interest,
+            uint32 _loanAmount, 
+            
+    ){
+        loan.agreement.borrower = _borrower; 
+        loan.agreement.staker = _staker;
+        loan.loanTerms.term=_term;
+        loan.loanTerms.interest=_interest;
+        loan.loanTerms.loanAmount=_loanAmount;
+        loan.status = STATUS_SUBMITTED;
+    }
+    
+    /* Gets loan details from the contract */
+    function getLoanData() constant returns (
+            bytes32 _borrower,
+            bytes32 _staker,
+            uint32 _term,
+            uint32 _interest,
+            uint32 _loanAmount,
+    {
+        _borrower = loan.borrower;
+        _term=loan.loanTerms.term;
+        _interest=loan.loanTerms.interest;
+        _loanAmount=loan.loanTerms.loanAmount;
+        _status = loan.status;
+    }
+    
+   // write function to approve loan
+    */
 }
+
