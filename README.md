@@ -1,4 +1,4 @@
-# Lendvie: A USDC lending application built on trust
+# A USDC lending application built on trust
 
 Decentralized peer-to peer USDC lending platform for users to make and receive microloans within their own Trusted Lending Network (TLN). 
 
