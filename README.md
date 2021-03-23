@@ -1,4 +1,4 @@
-# A mobile first decentralized credit plaform
+# A mobile first decentralized credit plaform for zero-interest rate loans
 
 
 Many of the new applications being built on blockchain networks can help provide cheaper, more transparent, and personalized loan access to individuals with poor credit ratings. All by utilizing the power of programmable smart contracts!
